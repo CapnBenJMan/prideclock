@@ -1,3 +1,23 @@
+html,
+body {
+	text-align: center;
+}
+
+html {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.content {
+	font-family: Georgia;
+	font-size: 16px;
+	background-color: var(--backcolor);
+	color: black;
+	margin: 0;
+}
+
 #numbercontainer {
 	display: flex;
 }
@@ -47,7 +67,6 @@ table.number {
 			}
 		}
 	}
-
 
 	&.zero {
 
@@ -185,6 +204,11 @@ table.colon {
 
 button,
 select {
+	font-family: inherit;
+	font-size: inherit;
+	vertical-align: middle;
+	border-radius: 1em;
+	text-align: center;
 
 	&.light {
 		color: black;
