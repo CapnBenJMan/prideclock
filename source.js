@@ -27,8 +27,8 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 	</${gradient}>
 </defs>
 <circle cx="5" cy="5" r="5" fill="url('#myGradient')" />
-<line x1="5" y1="5" x2="5" y2="1.5" stroke="black" stroke-linecap="round" transform="rotate(${360 * hour / 12})" transform-origin="center" />
 <line x1="5" y1="5" x2="5" y2="0.5" stroke="black" stroke-linecap="round" transform="rotate(${360 * minute / 60})" transform-origin="center" />
+<line x1="5" y1="5" x2="5" y2="1.5" stroke="black" stroke-linecap="round" transform="rotate(${360 * hour / 12})" transform-origin="center" />
 </svg>`
 	qry('link[rel=icon]').href = `data:image/svg+xml;base64,${window.btoa(svg)}`
 }
@@ -37,14 +37,30 @@ const root = document.documentElement.style,
 	nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
 	ids = ['hour1', 'hour2', 'colon1', 'minute1', 'minute2', 'colon2', 'second1', 'second2'],
 	cont = ID('numbercontainer'),
-	prideObj = JSON.parse(localStorage['s']),
+	prideObj = {
+		"pride": "linear-gradient(135deg, black 0 5%, red, orange, yellow, green, blue, violet, black 95% 100%)",
+		"pansexual": "linear-gradient(135deg, black 0 5%, deeppink, gold, royalblue, black 95% 100%)",
+		"trans": "linear-gradient(135deg, black 0 5%, skyblue, lightpink, white, lightpink, skyblue, black 95% 100%)",
+		"lesbian": "linear-gradient(135deg, black 0 5%, #d52c00, #ef7628, #ff9a56, white, #d162a4, #b55690, #a20262, black 95% 100%)",
+		"bisexual": "linear-gradient(135deg, black 0 5%, #d60370 35%, #9b4f96, #9b4f96, #0138a9 65%, black 95% 100%)",
+		"polysexual": "linear-gradient(135deg, black 0 5%, #f61cb9, #00d569, #1992f6, black 95% 100%)",
+		"asexual": "linear-gradient(135deg, black 0 5%, #303030 25%, silver 30% 45%, white 50% 65%, purple 85%, black 95% 100%)",
+		"nonbinary": "linear-gradient(135deg, black 0 5%, #fcf434, white, #9c59d1, #2c2c2c, black 95% 100%)",
+		"intersex": "radial-gradient(circle at center, gold, gold, #7a02aa 40%, gold 50%)",
+		"abrosexual": "linear-gradient(135deg, black 0 5%, #75ca91, #b4e5ca, white, #e695b6, #d9436e, black 95% 100%)",
+		"omnisexual": "linear-gradient(135deg, black 0 5%, #ff9bcf, #ff56c0, #250148, #675eff, #8fa7fe, black 95% 100%)"
+	},
 	prides = new Proxy(Object.values(prideObj), {
 		get(target, prop) {
 			if (Number(prop) >= target.length) return target[Number(prop) - target.length]
 			else return target[prop]
 		}
-	})
+	}),
+	inputs = [ID('toggle'), ID('toggle1'), ID('selector')]
+
 let interval = 0, last = 0
+
+// On DOM Content Loaded
 document.addEventListener("DOMContentLoaded", () => {
 	let bool = false
 	for (let x of ids) {
@@ -90,14 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			cont.appendChild(el)
 		}
 	}
-	const nEl = document.createElement("select")
-	nEl.innerHTML = Object.keys(prideObj).reduce((tot, cur) => tot += `<option value="${cur}">${cur.capitalize()} Flag</option>`, '')
-	nEl.classList.add('dark')
-	nEl.id = 'selector'
-	nEl.onchange = changer
+
+	const selector = ID('selector')
+	selector.innerHTML = Object.keys(prideObj).reduce((tot, cur) => tot += `<option value="${cur}">${cur.capitalize()} Flag</option>`, '')
+	selector.onchange = changer
 	const previous = localStorage['prev'] || prides[0]
-	qry('.content').appendChild(nEl)
-	ID('selector').value = keyFromValue(prideObj, previous)
+	selector.value = keyFromValue(prideObj, previous)
+	toggler(true)
 	setDate()
 	root.setProperty('--numcolor', previous)
 	urlSetter(previous)
@@ -135,19 +150,23 @@ function setDate() {
 setInterval(setDate, 100)
 setInterval(() => urlSetter(prideObj[ID('selector').value]), 1000)
 
-function toggler() {
-	const button = [ID('toggle'), ID('toggle1'), ID('selector')]
-	if (button[0].innerHTML.includes('Light')) {
-		button[0].innerHTML = 'Toggle Dark Mode'
+function toggler(stor = false) {
+	let light = false, dark = false
+	if (stor ? localStorage['mode'] == 'light' : inputs[0].innerHTML.includes('Light')) {
+		inputs[0].innerHTML = 'Toggle Dark Mode'
 		root.setProperty('--fadecolor', '#ddd6')
 		root.setProperty('--backcolor', 'white')
+		localStorage['mode'] = 'light'
+		light = true
 	} else {
-		button[0].innerHTML = 'Toggle Light Mode'
+		inputs[0].innerHTML = 'Toggle Light Mode'
 		root.setProperty('--fadecolor', '#3336')
 		root.setProperty('--backcolor', 'black')
+		localStorage['mode'] = 'dark'
+		dark = true
 	}
-	button.forEach(b => b.classList.toggle('light'))
-	button.forEach(b => b.classList.toggle('dark'))
+	inputs.forEach(b => b.classList.toggle('light', light))
+	inputs.forEach(b => b.classList.toggle('dark', dark))
 }
 
 /** @param {{[s: string]: any}} obj @param {string} val*/
@@ -156,8 +175,7 @@ function keyFromValue(obj, val) {
 }
 
 function toggler1() {
-	const button = ID('toggle1'),
-		selector = ID('selector'),
+	const selector = ID('selector'),
 		numcolor = root.getPropertyValue('--numcolor'),
 		index = (numcolor) ? prides.indexOf(numcolor) + 1 : 1
 	root.setProperty('--numcolor', prides[index])

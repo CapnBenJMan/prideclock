@@ -13,15 +13,11 @@
 	<link rel="icon" href="">
 </head>
 
-<script type="module">
-	import prideObj0 from './prides.json' assert {type: 'json'}
-	localStorage['s'] = JSON.stringify(prideObj0)
-</script>
-
 <body class="content">
 	<div id="numbercontainer"></div>
 	<button id="toggle" class="dark" onclick="toggler()">Toggle Light Mode</button>
 	<button id="toggle1" class="dark" onclick="toggler1()">Cycle Pride Flags</button>
+	<select id="selector" class="dark"></select>
 </body>
 
 <script src="source.js" type="text/javascript" defer></script>
