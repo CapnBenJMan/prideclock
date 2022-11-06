@@ -1,0 +1,12 @@
+{
+	"pride": "linear-gradient(135deg, black 0 5%, red, orange, yellow, green, blue, violet, black 95% 100%)",
+	"pansexual": "linear-gradient(135deg, black 0 5%, deeppink, gold, royalblue, black 95% 100%)",
+	"trans": "linear-gradient(135deg, black 0 5%, skyblue, lightpink, white, lightpink, skyblue, black 95% 100%)",
+	"lesbian": "linear-gradient(135deg, black 0 5%, #d52c00, #ef7628, #ff9a56, white, #d162a4, #b55690, #a20262, black 95% 100%)",
+	"bisexual": "linear-gradient(135deg, black 0 5%, #d60370 35%, #9b4f96, #9b4f96, #0138a9 65%, black 95% 100%)",
+	"polysexual": "linear-gradient(135deg, black 0 5%, #f61cb9, #00d569, #1992f6, black 95% 100%)",
+	"asexual": "linear-gradient(135deg, black 0 5%, #303030 25%, silver 30% 45%, white 50% 65%, purple 85%, black 95% 100%)",
+	"nonbinary": "linear-gradient(135deg, black 0 5%, #fcf434, white, #9c59d1, #2c2c2c, black 95% 100%)",
+	"intersex": "radial-gradient(circle at center, gold, gold, #7a02aa 40%, gold 50%)",
+	"abrosexual": "linear-gradient(135deg, black 0 5%, #75ca91, #b4e5ca, white, #e695b6, #d9436e, black 95% 100%)"
+}

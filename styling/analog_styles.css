@@ -1,0 +1,200 @@
+#numbercontainer {
+	display: flex;
+}
+
+:root {
+	--scalar: 0.45;
+	--fadecolor: #3336;
+	--backcolor: black;
+	--numcolor: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+}
+
+table.number {
+	background-color: var(--backcolor);
+	width: calc(30vw*var(--scalar));
+	max-height: 90vh;
+	margin: auto;
+
+	& tr {
+		&:nth-child(odd) {
+			height: calc(5vw*var(--scalar));
+			max-height: calc(5vh*var(--scalar));
+
+			& td:nth-child(odd) {
+				background-color: var(--backcolor);
+			}
+		}
+
+		&:nth-child(even) {
+			height: calc(20vw*var(--scalar));
+			max-height: calc(30vh*var(--scalar));
+
+			& td:nth-child(2) {
+				background-color: var(--backcolor);
+			}
+		}
+
+		& td {
+			background-color: var(--fadecolor);
+			border-radius: 2.5vw;
+
+			&:nth-child(odd) {
+				width: calc(5vw*var(--scalar));
+			}
+
+			&:nth-child(2) {
+				width: calc(20vw*var(--scalar));
+			}
+		}
+	}
+
+
+	&.zero {
+
+		& .T,
+		& .TL,
+		& .TR,
+		& .BL,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.one {
+
+		& .TR,
+		& .BR {
+			background: var(--numcolor);
+		}
+	}
+
+	&.two {
+
+		& .T,
+		& .TR,
+		& .M,
+		& .BL,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.three {
+
+		& .T,
+		& .TR,
+		& .M,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.four {
+
+		& .TL,
+		& .TR,
+		& .M,
+		& .BR {
+			background: var(--numcolor);
+		}
+	}
+
+	&.five {
+
+		& .T,
+		& .TL,
+		& .M,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.six {
+
+		& .T,
+		& .TL,
+		& .M,
+		& .BL,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.seven {
+
+		& .T,
+		& .TR,
+		& .BR {
+			background: var(--numcolor);
+		}
+	}
+
+	&.eight {
+
+		& .T,
+		& .TL,
+		& .TR,
+		& .M,
+		& .BL,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.nine {
+
+		& .T,
+		& .TL,
+		& .TR,
+		& .M,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+}
+
+table.colon {
+	table-layout: fixed;
+
+	& tr:nth-child(even) {
+		height: calc(5vw*var(--scalar));
+		width: calc(5vw*var(--scalar));
+		background-color: var(--fadecolor);
+
+		& td {
+			width: calc(5vw*var(--scalar));
+			height: calc(5vw*var(--scalar));
+			border-radius: 2.5vw;
+		}
+	}
+
+	& tr:nth-child(3) {
+		height: calc(20vw*var(--scalar));
+	}
+
+	&.active tr:nth-child(even) {
+		background: var(--numcolor);
+	}
+}
+
+button,
+select {
+
+	&.light {
+		color: black;
+		background-color: white;
+		border-color: black;
+	}
+
+	&.dark {
+		color: white;
+		background-color: black;
+		border-color: #eee6;
+	}
+}
