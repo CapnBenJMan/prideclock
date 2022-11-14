@@ -22,8 +22,13 @@ html {
 	display: flex;
 }
 
+.magic {
+	display: none !important;
+}
+
 :root {
 	--scalar: 0.45;
+	--u: 3vmin;
 	--fadecolor: #3336;
 	--backcolor: black;
 	--numcolor: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
@@ -202,6 +207,198 @@ table.colon {
 	}
 }
 
+.gridContainer {
+	display: flex;
+	width: 100%;
+	max-width: 100vw;
+	justify-content: center;
+	gap: 0.5%;
+}
+
+.numberContainer {
+	flex: 0 0 auto;
+	display: grid;
+	height: calc(9*var(--u));
+	width: calc(5*var(--u));
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-rows: repeat(2, 1fr 3fr) 1fr;
+
+	& div {
+		border-radius: 100px;
+		height: 100%;
+		width: 100%;
+		background-color: var(--fadecolor);
+
+		&.T {
+			grid-area: 1 / 2 / 2 / 3;
+		}
+
+		&.TL,
+		&.TR {
+			grid-row: 2 / 3;
+		}
+
+		&.BL,
+		&.BR {
+			grid-row: 4 / 5;
+		}
+
+		&.TL,
+		&.BL {
+			grid-column: 1 / 2;
+		}
+
+		&.TR,
+		&.BR {
+			grid-column: 3 / 4;
+		}
+
+		&.M {
+			grid-area: 3 / 2 / 4 / 3;
+		}
+
+		&.B {
+			grid-area: 5 / 2 / 6 / 3;
+		}
+	}
+
+	&.zero {
+
+		& .T,
+		& .TL,
+		& .TR,
+		& .BL,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.one {
+
+		& .TR,
+		& .BR {
+			background: var(--numcolor);
+		}
+	}
+
+	&.two {
+
+		& .T,
+		& .TR,
+		& .M,
+		& .BL,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.three {
+
+		& .T,
+		& .TR,
+		& .M,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.four {
+
+		& .TL,
+		& .TR,
+		& .M,
+		& .BR {
+			background: var(--numcolor);
+		}
+	}
+
+	&.five {
+
+		& .T,
+		& .TL,
+		& .M,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.six {
+
+		& .T,
+		& .TL,
+		& .M,
+		& .BL,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.seven {
+
+		& .T,
+		& .TR,
+		& .BR {
+			background: var(--numcolor);
+		}
+	}
+
+	&.eight {
+
+		& .T,
+		& .TL,
+		& .TR,
+		& .M,
+		& .BL,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+
+	&.nine {
+
+		& .T,
+		& .TL,
+		& .TR,
+		& .M,
+		& .BR,
+		& .B {
+			background: var(--numcolor);
+		}
+	}
+}
+
+.colonContainer {
+	flex: 0 0 auto;
+	display: grid;
+	height: calc(9*var(--u));
+	width: calc(1*var(--u));
+	grid-template-rows: 2fr 1fr 3fr 1fr 2fr;
+
+	& div {
+		border-radius: 100px;
+		height: 100%;
+		width: 100%;
+		background-color: var(--fadecolor);
+
+		&.T {
+			grid-row: 2 / 3;
+		}
+
+		&.B {
+			grid-row: 4 / 5;
+		}
+	}
+
+	&.active div {
+		background: var(--numcolor);
+	}
+}
+
 button,
 select {
 	font-family: inherit;
@@ -220,5 +417,16 @@ select {
 		color: white;
 		background-color: black;
 		border-color: #eee6;
+	}
+}
+
+label {
+
+	&.light {
+		color: black;
+	}
+
+	&.dark {
+		color: white;
 	}
 }

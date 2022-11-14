@@ -56,55 +56,65 @@ const root = document.documentElement.style,
 			else return target[prop]
 		}
 	}),
-	inputs = [ID('toggle'), ID('toggle1'), ID('selector')]
+	inputs = [ID('toggle'), ID('toggle1'), ID('selector'), qry('label')]
 
 let interval = 0, last = 0
 
 // On DOM Content Loaded
 document.addEventListener("DOMContentLoaded", () => {
 	let bool = false
+	const grid = ID('gridContainer')
 	for (let x of ids) {
 		const el = document.createElement("table")
-		el.id = x
+		el.id = `${x}a`
 		if (x.includes('colon')) {
 			el.innerHTML = `<tr><td></td></tr>
-<tr><td></td></tr>
-<tr><td></td></tr>
-<tr><td></td></tr>
-<tr><td></td></tr>`
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>
+		<tr><td></td></tr>`
 			el.classList.add('colon')
 			el.classList.toggle('active', bool)
 			bool = !bool
 			cont.appendChild(el)
 		} else {
 			el.innerHTML = `<tr>
-				<td></td>
-				<td class="T"></td>
-				<td></td>
-				</tr>
-				<tr>
-					<td class="TL"></td>
-	<td></td>
-	<td class="TR"></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td class="M"></td>
-		<td></td>
-		</tr>
-		<tr>
-			<td class="BL"></td>
+						<td></td>
+						<td class="T"></td>
+						<td></td>
+						</tr>
+						<tr>
+							<td class="TL"></td>
 			<td></td>
-			<td class="BR"></td>
+			<td class="TR"></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td class="B"></td>
+				<td class="M"></td>
 				<td></td>
-				</tr>`
+				</tr>
+				<tr>
+					<td class="BL"></td>
+					<td></td>
+					<td class="BR"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="B"></td>
+						<td></td>
+						</tr>`
 			el.classList.add('number')
 			cont.appendChild(el)
 		}
+
+		let i = (x.includes('colon')) ? 1 : 0
+		const temp = Array.from(document.getElementsByTagName("template"))[i].content,
+			copy = document.importNode(temp, true)
+		grid.appendChild(copy)
+		const children = Array.from(grid.children),
+			child = children[children.length - 1]
+		child.id = `${x}b`
+		if (x == 'colon1') child.classList.add('active')
 	}
 
 	const selector = ID('selector')
@@ -113,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const previous = localStorage['prev'] || prides[0]
 	selector.value = keyFromValue(prideObj, previous)
 	toggler(true)
+	toggler2(localStorage['mini'] == 'true')
 	setDate()
 	root.setProperty('--numcolor', previous)
 	urlSetter(previous)
@@ -134,13 +145,15 @@ function setDate() {
 	if ((last == 9 && timestring[-1] == 0) || last < timestring[-1]) {
 		last = timestring[-1]
 
-		for (let i in ids) {
-			if (timestring[i] == ':') continue
-			const cur = ID(ids[i])
-			cur.classList.remove(...nums)
-			cur.classList.add(nums[timestring[i]])
+		for (let m of ['a', 'b']) {
+			for (let i in ids) {
+				if (timestring[i] == ':') continue
+				const cur = ID(`${ids[i]}${m}`)
+				cur.classList.remove(...nums)
+				cur.classList.add(nums[timestring[i]])
+			}
+			qryA(`#colon1${m}, #colon2${m}`).forEach(x => x.classList.toggle('active'))
 		}
-		qryA('.colon').forEach(x => x.classList.toggle('active'))
 	}
 	const tempHour = Number(`${timestring[0]}${timestring[1]}`)
 	minute = Number(`${timestring[3]}${timestring[4]}`)
@@ -189,4 +202,13 @@ function changer() {
 	root.setProperty('--numcolor', prideObj[selection])
 	urlSetter(prideObj[selection])
 	localStorage['prev'] = prideObj[selection]
+}
+
+/** @param {boolean} bool */
+function toggler2(bool) {
+	const mini = bool ?? ID('minify').checked
+	if (bool != undefined && bool != false) ID('minify').checked = true
+	ID('gridContainer').classList.toggle('magic', !mini)
+	ID('numbercontainer').classList.toggle('magic', mini)
+	localStorage['mini'] = mini
 }

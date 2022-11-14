@@ -13,6 +13,7 @@ html {
 .content {
 	font-family: Georgia;
 	font-size: 16px;
+	background-color: black;
 	background-color: var(--backcolor);
 	color: black;
 	margin: 0;
@@ -22,48 +23,64 @@ html {
 	display: flex;
 }
 
+.magic {
+	display: none !important;
+}
+
 :root {
 	--scalar: 0.45;
+	--u: 3vmin;
 	--fadecolor: rgba(51,51,51,0.4);
 	--backcolor: black;
 	--numcolor: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 }
 
 table.number {
+	background-color: black;
 	background-color: var(--backcolor);
+	width: calc(30vw*0.45);
 	width: calc(30vw*var(--scalar));
 	max-height: 90vh;
 	margin: auto;
 }
 
 table.number tr:nth-child(odd) {
+			height: calc(5vw*0.45);
 			height: calc(5vw*var(--scalar));
+			max-height: calc(5vh*0.45);
 			max-height: calc(5vh*var(--scalar));
 		}
 
 table.number tr:nth-child(odd) td:nth-child(odd) {
+				background-color: black;
 				background-color: var(--backcolor);
 			}
 
 table.number tr:nth-child(even) {
+			height: calc(20vw*0.45);
 			height: calc(20vw*var(--scalar));
+			max-height: calc(30vh*0.45);
 			max-height: calc(30vh*var(--scalar));
 		}
 
 table.number tr:nth-child(even) td:nth-child(2) {
+				background-color: black;
 				background-color: var(--backcolor);
 			}
 
 table.number tr td {
+			background-color: rgba(51,51,51,0.4);
 			background-color: var(--fadecolor);
 			border-radius: 2.5vw;
 		}
 
 table.number tr td:nth-child(odd) {
+				width: calc(5vw*0.45);
 				width: calc(5vw*var(--scalar));
 			}
 
 table.number tr td:nth-child(2) {
+				width: calc(20vw*0.45);
 				width: calc(20vw*var(--scalar));
 			}
 
@@ -73,11 +90,13 @@ table.number.zero .T,
 		table.number.zero .BL,
 		table.number.zero .BR,
 		table.number.zero .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
 table.number.one .TR,
 		table.number.one .BR {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -86,6 +105,7 @@ table.number.two .T,
 		table.number.two .M,
 		table.number.two .BL,
 		table.number.two .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -94,6 +114,7 @@ table.number.three .T,
 		table.number.three .M,
 		table.number.three .BR,
 		table.number.three .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -101,6 +122,7 @@ table.number.four .TL,
 		table.number.four .TR,
 		table.number.four .M,
 		table.number.four .BR {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -109,6 +131,7 @@ table.number.five .T,
 		table.number.five .M,
 		table.number.five .BR,
 		table.number.five .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -118,12 +141,14 @@ table.number.six .T,
 		table.number.six .BL,
 		table.number.six .BR,
 		table.number.six .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
 table.number.seven .T,
 		table.number.seven .TR,
 		table.number.seven .BR {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -134,6 +159,7 @@ table.number.eight .T,
 		table.number.eight .BL,
 		table.number.eight .BR,
 		table.number.eight .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -143,6 +169,7 @@ table.number.nine .T,
 		table.number.nine .M,
 		table.number.nine .BR,
 		table.number.nine .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 			background: var(--numcolor);
 		}
 
@@ -151,22 +178,208 @@ table.colon {
 }
 
 table.colon tr:nth-child(even) {
+		height: calc(5vw*0.45);
 		height: calc(5vw*var(--scalar));
+		width: calc(5vw*0.45);
 		width: calc(5vw*var(--scalar));
+		background-color: rgba(51,51,51,0.4);
 		background-color: var(--fadecolor);
 	}
 
 table.colon tr:nth-child(even) td {
+			width: calc(5vw*0.45);
 			width: calc(5vw*var(--scalar));
+			height: calc(5vw*0.45);
 			height: calc(5vw*var(--scalar));
 			border-radius: 2.5vw;
 		}
 
 table.colon tr:nth-child(3) {
+		height: calc(20vw*0.45);
 		height: calc(20vw*var(--scalar));
 	}
 
 table.colon.active tr:nth-child(even) {
+		background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+		background: var(--numcolor);
+	}
+
+.gridContainer {
+	display: flex;
+	width: 100%;
+	max-width: 100vw;
+	justify-content: center;
+	gap: 0.5%;
+}
+
+.numberContainer {
+	flex: 0 0 auto;
+	display: grid;
+	height: calc(9*3vmin);
+	height: calc(9*var(--u));
+	width: calc(5*3vmin);
+	width: calc(5*var(--u));
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-rows: repeat(2, 1fr 3fr) 1fr;
+}
+
+.numberContainer div {
+		border-radius: 100px;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(51,51,51,0.4);
+		background-color: var(--fadecolor);
+	}
+
+.numberContainer div.T {
+			grid-area: 1 / 2 / 2 / 3;
+		}
+
+.numberContainer div.TL,
+		.numberContainer div.TR {
+			grid-row: 2 / 3;
+		}
+
+.numberContainer div.BL,
+		.numberContainer div.BR {
+			grid-row: 4 / 5;
+		}
+
+.numberContainer div.TL,
+		.numberContainer div.BL {
+			grid-column: 1 / 2;
+		}
+
+.numberContainer div.TR,
+		.numberContainer div.BR {
+			grid-column: 3 / 4;
+		}
+
+.numberContainer div.M {
+			grid-area: 3 / 2 / 4 / 3;
+		}
+
+.numberContainer div.B {
+			grid-area: 5 / 2 / 6 / 3;
+		}
+
+.numberContainer.zero .T,
+		.numberContainer.zero .TL,
+		.numberContainer.zero .TR,
+		.numberContainer.zero .BL,
+		.numberContainer.zero .BR,
+		.numberContainer.zero .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.one .TR,
+		.numberContainer.one .BR {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.two .T,
+		.numberContainer.two .TR,
+		.numberContainer.two .M,
+		.numberContainer.two .BL,
+		.numberContainer.two .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.three .T,
+		.numberContainer.three .TR,
+		.numberContainer.three .M,
+		.numberContainer.three .BR,
+		.numberContainer.three .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.four .TL,
+		.numberContainer.four .TR,
+		.numberContainer.four .M,
+		.numberContainer.four .BR {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.five .T,
+		.numberContainer.five .TL,
+		.numberContainer.five .M,
+		.numberContainer.five .BR,
+		.numberContainer.five .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.six .T,
+		.numberContainer.six .TL,
+		.numberContainer.six .M,
+		.numberContainer.six .BL,
+		.numberContainer.six .BR,
+		.numberContainer.six .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.seven .T,
+		.numberContainer.seven .TR,
+		.numberContainer.seven .BR {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.eight .T,
+		.numberContainer.eight .TL,
+		.numberContainer.eight .TR,
+		.numberContainer.eight .M,
+		.numberContainer.eight .BL,
+		.numberContainer.eight .BR,
+		.numberContainer.eight .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.numberContainer.nine .T,
+		.numberContainer.nine .TL,
+		.numberContainer.nine .TR,
+		.numberContainer.nine .M,
+		.numberContainer.nine .BR,
+		.numberContainer.nine .B {
+			background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
+			background: var(--numcolor);
+		}
+
+.colonContainer {
+	flex: 0 0 auto;
+	display: grid;
+	height: calc(9*3vmin);
+	height: calc(9*var(--u));
+	width: calc(1*3vmin);
+	width: calc(1*var(--u));
+	grid-template-rows: 2fr 1fr 3fr 1fr 2fr;
+}
+
+.colonContainer div {
+		border-radius: 100px;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(51,51,51,0.4);
+		background-color: var(--fadecolor);
+	}
+
+.colonContainer div.T {
+			grid-row: 2 / 3;
+		}
+
+.colonContainer div.B {
+			grid-row: 4 / 5;
+		}
+
+.colonContainer.active div {
+		background: linear-gradient(135deg, black, red, orange, yellow, green, blue, violet, black);
 		background: var(--numcolor);
 	}
 
@@ -189,4 +402,12 @@ button.dark, select.dark {
 		color: white;
 		background-color: black;
 		border-color: rgba(238,238,238,0.4);
+	}
+
+label.light {
+		color: black;
+	}
+
+label.dark {
+		color: white;
 	}

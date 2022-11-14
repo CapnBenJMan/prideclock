@@ -14,10 +14,29 @@
 </head>
 
 <body class="content">
+	<div id="gridContainer" class="gridContainer"></div>
+	<template id="numTemp">
+		<div class="numberContainer zero">
+			<div class="T"></div>
+			<div class="TL"></div>
+			<div class="TR"></div>
+			<div class="M"></div>
+			<div class="BL"></div>
+			<div class="BR"></div>
+			<div class="B"></div>
+		</div>
+	</template>
+	<template id="colonTemp">
+		<div class="colonContainer">
+			<div class="T"></div>
+			<div class="B"></div>
+		</div>
+	</template>
 	<div id="numbercontainer"></div>
 	<button id="toggle" class="dark" onclick="toggler()">Toggle Light Mode</button>
 	<button id="toggle1" class="dark" onclick="toggler1()">Cycle Pride Flags</button>
 	<select id="selector" class="dark"></select>
+	<input type="checkbox" id="minify" onclick="toggler2()"><label for="minify" class="dark">Minify</label>
 </body>
 
 <script src="source.js" type="text/javascript" defer></script>
