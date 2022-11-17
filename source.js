@@ -120,10 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	const selector = ID('selector')
 	selector.innerHTML = Object.keys(prideObj).reduce((tot, cur) => tot += `<option value="${cur}">${cur.capitalize()} Flag</option>`, '')
 	selector.onchange = changer
-	const previous = localStorage['prev'] || prides[0]
+	const previous = localStorage['CaptainBenJManPrideClockprev'] || prides[0]
 	selector.value = keyFromValue(prideObj, previous)
 	toggler(true)
-	toggler2(localStorage['mini'] == 'true')
+	toggler2(localStorage['CaptainBenJManPrideClockmini'] == 'true')
 	setDate()
 	root.setProperty('--numcolor', previous)
 	urlSetter(previous)
@@ -165,17 +165,17 @@ setInterval(() => urlSetter(prideObj[ID('selector').value]), 1000)
 
 function toggler(stor = false) {
 	let light = false, dark = false
-	if (stor ? localStorage['mode'] == 'light' : inputs[0].innerHTML.includes('Light')) {
+	if (stor ? localStorage['CaptainBenJManPrideClockmode'] == 'light' : inputs[0].innerHTML.includes('Light')) {
 		inputs[0].innerHTML = 'Toggle Dark Mode'
 		root.setProperty('--fadecolor', '#ddd6')
 		root.setProperty('--backcolor', 'white')
-		localStorage['mode'] = 'light'
+		localStorage['CaptainBenJManPrideClockmode'] = 'light'
 		light = true
 	} else {
 		inputs[0].innerHTML = 'Toggle Light Mode'
 		root.setProperty('--fadecolor', '#3336')
 		root.setProperty('--backcolor', 'black')
-		localStorage['mode'] = 'dark'
+		localStorage['CaptainBenJManPrideClockmode'] = 'dark'
 		dark = true
 	}
 	inputs.forEach(b => b.classList.toggle('light', light))
@@ -194,14 +194,14 @@ function toggler1() {
 	root.setProperty('--numcolor', prides[index])
 	selector.value = keyFromValue(prideObj, prides[index])
 	urlSetter(prides[index])
-	localStorage['prev'] = prides[index]
+	localStorage['CaptainBenJManPrideClockprev'] = prides[index]
 }
 
 function changer() {
 	const selection = ID('selector').value
 	root.setProperty('--numcolor', prideObj[selection])
 	urlSetter(prideObj[selection])
-	localStorage['prev'] = prideObj[selection]
+	localStorage['CaptainBenJManPrideClockprev'] = prideObj[selection]
 }
 
 /** @param {boolean} bool */
@@ -210,5 +210,5 @@ function toggler2(bool) {
 	if (bool != undefined && bool != false) ID('minify').checked = true
 	ID('gridContainer').classList.toggle('magic', !mini)
 	ID('numbercontainer').classList.toggle('magic', mini)
-	localStorage['mini'] = mini
+	localStorage['CaptainBenJManPrideClockmini'] = mini
 }
